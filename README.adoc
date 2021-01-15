@@ -91,7 +91,7 @@ Relevant files and directories:
 
 Clone the repository:
 
-`git clone <insert repo URL here>`
+`git clone https://github.com/modzy/packaged-basic-image-classification.git`
 // update url to git repo
 
 == Usage
