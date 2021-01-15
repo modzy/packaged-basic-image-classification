@@ -1,0 +1,162 @@
+# The version of the model specification.
+specification: '0.3'
+# Model input type. Only "file" is supported at this time.
+type: file
+source: bah
+# The version of the model. This should correspond to the version
+# of the model container image. Version numbers must be specified
+# as three dot separated integers, for example '2.1.0'.
+version: 1.0.0
+# The human readable name of the model.
+name: Basic Image Classification
+# The author of the model.
+author: Modzy
+# Model detail information.
+description:
+  # A one or two sentence summary of what this model does.
+  summary: 
+  # A longer description of the model. This value supports content
+  # in Markdown format for including rich text, links, images, etc.
+  details: 
+  # Technical details. This value
+  # supports content in Markdown format for including rich
+  # text, links, images, etc.
+  # Three recommended sections: Overview, Training, and Validation (Use Markdown to create the section headers)
+  # Overview: which model architecture was chosen and why
+  # Training: Where the data came from, preprocessing that was performed,
+  #   how long the model took to train on what hardware, model hyperparameters
+  # Validation: what data was used for validation
+  technical: |-
+    #OVERVIEW:
+
+    #TRAINING:
+
+    #VALIDATION:
+  # Metrics that describe the model's performance (if no relevant metrics provide explanation why)
+  # Specify which dataset these metrics were evaluated on
+  performance: 
+    
+# Use this format: "VERSION_NUMBER - Concise sentence describing what is new in this version of the model."
+# Example: "0.0.11 - Achieves precision of 98.15%, recall of 90.61%, and F1 score of 89.72% on CoNLL-2003 validation dataset."
+releaseNotes: 1.0.0 - Initial release.
+
+# Tags and filters help users find this model.
+tags:
+- Computer Vision
+filters:
+- type: Subject
+  label: Colors, Textures, and Patterns
+- type: Task
+  label: Locate or Detect
+
+# This section contains the data science metrics for your model
+# Each metric contains a human-readable label along with a
+# decimal value between 0 and 1.
+metrics:
+- label: Deterministic
+  type: percentage
+  value: !!float '1'
+  description: |2-
+
+
+    Further information [here](/docs/how-to-guides/classification-metrics?search=metric).
+
+# Please indicate the names and kinds of input(s) that your model
+# expects. The names and types you specify here will be used to
+# validate inputs supplied by inference job requests.
+inputs:
+  # The value of this key will be the name of the file that is
+  # supplied to your model for processing
+  image:
+    # The expected media types of this file. For more information
+    # on media types, see:
+    # https://www.iana.org/assignments/media-types/media-types.xhtml
+    acceptedMediaTypes:
+    - image/jpeg
+    - image/png
+    # The maximum size that this file is expected to be.
+    maxSize: 1M
+    # A human readable description of what this file is expected to
+    # be. This value supports content in Markdown format for including
+    # rich text, links, images, etc.
+    description: |
+      Image file to be classified with model.
+
+      Accepted image types: jpeg or png encoded images.
+
+# Please indicate the names and kinds of output(s) that your model
+# writes out.
+outputs:
+  results.json:
+    # The expected media types of this file. For more information
+    # on media types, see:
+    # https://www.iana.org/assignments/media-types/media-types.xhtml
+    mediaType: application/json
+    # The maximum size that this file is expected to be.
+    maxSize: 1M
+    # A human readable description of what this file is expected to
+    # be. This value supports content in Markdown format for including
+    # rich text, links, images, etc.
+    description: |-
+      Top five classifications with their respective prediction probabilities.
+      Example:
+        {
+          "results": [
+              [
+                  "golden retriever",
+                  0.3773571252822876
+              ],
+              [
+                  "tennis ball",
+                  0.33293870091438293
+              ],
+              [
+                  "Labrador retriever",
+                  0.2771437168121338
+              ],
+              [
+                  "soccer ball",
+                  0.003741052933037281
+              ],
+              [
+                  "flat-coated retriever",
+                  0.0010236271191388369
+              ]
+          ]
+      }
+
+# The resources section indicates what resources are required by your model
+# in order to run efficiently. Keep in mind that there may be many instances
+# of your model running at any given time so please be conservative with the
+# values you specify here.
+resources:
+  memory:
+    # The amount of RAM required by your model.
+    size: 512M
+  cpu:
+    # CPU count should be specified as the number of fractional CPUs that
+    # are needed. For example, 1 == one CPU core.
+    count: 1
+  gpu:
+    # GPU count must be an integer.
+    count: 0
+# Please specify a timeout value that indicates a time at which
+# requests to your model should be canceled. If you are using a
+# webserver with built in timeouts within your container such as
+# gunicorn make sure to adjust those timeouts accordingly.
+timeout:
+  # Status timeout indicates the timeout threshhold for calls to your
+  # model's `/status` route.
+  status: 20s
+  # Run timeout indicates the timeout threshhold for files submitted
+  # to your model for processing.
+  run: 20s
+
+# Please set the following flags to either true or false.
+internal:
+  recommended: false
+  experimental: false
+  available: true
+  features:
+    explainable: false
+    adversarialDefense: false
