@@ -86,7 +86,10 @@ class BasicImageClassifier(ModelBase):
         positional arguments in the same order as specified in `input_filenames` and `output_filenames`.
         """
         # read in data
-        image = Image.open(input_path)
+        try:
+            image = Image.open(input_path)
+        except Exception:
+            raise ValueError("invalid image file")
         
         # data preprocessing
         img = self.preprocess(image)
