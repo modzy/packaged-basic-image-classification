@@ -11,7 +11,7 @@ humanfriendly==4.18
 itsdangerous==1.1.0       # via flask
 jinja2==2.10.1            # via flask
 markupsafe==1.1.1         # via jinja2
-Pillow==7.2.0
+Pillow>=8.1.1
 pyreadline==2.1           # via humanfriendly
 python-box==3.4.2
 werkzeug==0.15.4          # via flask
